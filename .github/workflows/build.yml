@@ -17,7 +17,7 @@ jobs:
 
     - name: Build
       run: |
-        GOOS=linux GOARCH=amd64 go build -o webhook-configctl-linux-amd64 ./cmd/webhook-configctl
+        CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-s -w" -o webhook-configctl-linux-amd64 ./cmd/webhook-configctl
         
     - name: Upload artifact
       uses: actions/upload-artifact@v4
